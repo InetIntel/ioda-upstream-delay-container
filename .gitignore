@@ -1,2 +1,14 @@
 # JetBrains IDE
 .idea
+
+.idea
+.DS_Store
+.token
+.vscode/
+*.pyc
+__pycache__/
+venv/
+
+docker/.env
+
+logging*
