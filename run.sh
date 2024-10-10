@@ -39,8 +39,8 @@ if [ "$USE_RUNTIME_VARS" == "y" ]; then
     echo "Entering runtime variables..."
 
     # Essential info: locaitons, username, passwords, and uuid
-    read -p "Enter remote storage locations, seperated by ',' (or type 'q' to quit): " REMOTE_STORAGE_LOCATIONS
-    if [ "$REMOTE_STORAGE_LOCATIONS" == "q" ]; then
+    read -p "Enter remote storage locations, seperated by ',' (or type 'q' to quit): " REMOTE_STORAGES
+    if [ "$REMOTE_STORAGES" == "q" ]; then
         quit_setup
     fi
     read -p "Enter remote storage usernames, seperated by ',' (or type 'q' to quit): " REMOTE_STORAGE_USERS
@@ -57,7 +57,7 @@ if [ "$USE_RUNTIME_VARS" == "y" ]; then
         quit_setup
     fi
 
-    export REMOTE_STORAGE_LOCATIONS
+    export REMOTE_STORAGES
     export REMOTE_STORAGE_USERS
     export REMOTE_STORAGE_PASSWORDS
     export UUID
@@ -65,7 +65,7 @@ if [ "$USE_RUNTIME_VARS" == "y" ]; then
     # run time variable collected, use it to initialize container
     echo "run time variable collected, setting up..."
     docker-compose --env-file app_config.env up --build -d \
-        -e REMOTE_STORAGE_LOCATIONS="$REMOTE_STORAGE_LOCATIONS" \
+        -e REMOTE_STORAGES="$REMOTE_STORAGES" \
         -e REMOTE_STORAGE_USERS="$REMOTE_STORAGE_USERS" \
         -e REMOTE_STORAGE_PASSWORDS="$REMOTE_STORAGE_PASSWORDS" \
         -e UUID="$UUID"
