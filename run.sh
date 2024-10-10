@@ -8,11 +8,16 @@ quit_setup() {
 cd docker
 
 
+# Quick check for app config (run time variables are all authentication related, not app parameters)
+if [ ! -f "app_config.env" ]; then
+    echo "app_config.env is not found, we need it to for configure the fast probing application"
+    quit_setup
+fi
 
 # Two ways to setup: 1. .env (if authentication is provid) 2. run-time variables
 # If .env is missing, user will be prompted to input run-time variables
-if [ ! -f ".env" ]; then
-    echo ".env file is not found."
+if [ ! -f "auth.env" ]; then
+    echo "auth.env file is not found, we need it to connect to database"
     read -p "Do you want to continue with runtime variables? (y/n or q to quit): " USE_RUNTIME_VARS
     if [ "$USE_RUNTIME_VARS" == "q" ] || [ "$USE_RUNTIME_VARS" == "n" ]; then
         quit_setup
@@ -59,7 +64,7 @@ if [ "$USE_RUNTIME_VARS" == "y" ]; then
 
     # run time variable collected, use it to initialize container
     echo "run time variable collected, setting up..."
-    docker-compose up --build -d \
+    docker-compose --env-file app_config.env up --build -d \
         -e REMOTE_STORAGE_LOCATIONS="$REMOTE_STORAGE_LOCATIONS" \
         -e REMOTE_STORAGE_USERS="$REMOTE_STORAGE_USERS" \
         -e REMOTE_STORAGE_PASSWORDS="$REMOTE_STORAGE_PASSWORDS" \
@@ -68,7 +73,7 @@ if [ "$USE_RUNTIME_VARS" == "y" ]; then
 else
     # .env exists, use it directly to initialize container
     echo ".env detected, setting up..."
-    docker-compose --env-file .env up --build -d
+    docker-compose --env-file app_config.env --env-file auth.env up --build -d
 fi
 
 
