@@ -9,7 +9,7 @@ services:
       - NET_ADMIN
       - NET_RAW
     volumes:
-      - /Users/weili/Project/iupd:/ioda-upstream-delay-new
+      - ${VOLUMN_MAPPING}
     command: python3 main.py
     environment:
       - DEBIAN_FRONTEND=noninteractive

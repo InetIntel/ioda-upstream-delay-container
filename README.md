@@ -34,6 +34,6 @@ Before running the project, we need to provide some essential configuration and 
    - This file does **NOT** contain any sensitive information.
 
 2. **Authentication Configuration (`auth.env`)**:
-   - **This file is essential to connect to remote storage**
+   - **This file is essential for connecting to remote storage**
    - Create a `auth.env` file in the `docker` folder, following the structure of the provided `sensitive_template.env` and assign values to the required sensitive fields like usernames, passwords, and UUID.
    - This file contains sensitive information
