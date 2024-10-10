@@ -58,8 +58,8 @@ if [ "$USE_RUNTIME_VARS" == "y" ]; then
     fi
 
     export REMOTE_STORAGE_LOCATIONS
-    export REMOTE_STORAGE_USER
-    export REMOTE_STORAGE_PASSWORD
+    export REMOTE_STORAGE_USERS
+    export REMOTE_STORAGE_PASSWORDS
     export UUID
 
     # run time variable collected, use it to initialize container
