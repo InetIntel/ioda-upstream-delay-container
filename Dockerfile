@@ -3,8 +3,6 @@ FROM ubuntu:jammy
 ENV DEBIAN_FRONTEND=noninteractive
 ENV APP_ENV=docker
 
-ARG GITHUB_TOKEN
-
 # Install necessary packages
 RUN apt-get update && apt-get install -y \
     git \
@@ -68,14 +66,15 @@ RUN ./bootstrap && ./configure && make
 
 # Application setup
 WORKDIR /
-RUN git clone https://github.com/InetIntel/ioda-upstream-delay-docker-application /ioda-upstream-delay-new
-RUN mkdir -p /ioda-upstream-delay-new/intermediate_result /ioda-upstream-delay-new/result
-RUN cd /ioda-upstream-delay-new/parser && \
+RUN git clone https://github.com/InetIntel/ioda-upstream-delay-docker-application /ioda-upstream-delay-application
+RUN mkdir -p /data/tmp /data/results
+RUN cd /ioda-upstream-delay-application/data_parser && \
     make
-WORKDIR /ioda-upstream-delay-new
+WORKDIR /ioda-upstream-delay-application
 RUN python3 -m pip install -r requirements.txt
+RUN python3 -m pip install elasticsearch[async]
 
 
 # run
-WORKDIR /ioda-upstream-delay-new
-CMD ["python3", "main.py"]
+WORKDIR /ioda-upstream-delay-application
+CMD ["python3", "-i", "main.py"]
