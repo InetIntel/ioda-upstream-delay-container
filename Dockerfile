@@ -68,7 +68,8 @@ RUN ./bootstrap && ./configure && make
 WORKDIR /
 RUN git clone https://github.com/InetIntel/ioda-upstream-delay-docker-application /ioda-upstream-delay-application
 RUN mkdir -p /data/tmp /data/results
-RUN cd /ioda-upstream-delay-application/data_parser && \
+RUN cd /ioda-upstream-delay-application && git pull
+RUN cd /ioda-upstream-delay-application/yrp2text && \
     make
 WORKDIR /ioda-upstream-delay-application
 RUN python3 -m pip install -r requirements.txt

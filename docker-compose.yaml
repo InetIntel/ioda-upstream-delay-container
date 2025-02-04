@@ -3,7 +3,7 @@ services:
     build:
       context: .
     container_name: iupd-container
-    network_mode: bridge
+    network_mode: host
     user: root
     cap_add:
       - NET_ADMIN
@@ -11,21 +11,8 @@ services:
     volumes:
       - ./data:/data
       - ./config:/config
-      - /Users/zbisch/code/projects/ioda-upstream-delay/app:/ioda-upstream-delay-application
     command: python3 main.py
     environment:
       - DEBIAN_FRONTEND=noninteractive
       - APP_ENV=docker
-      - VP_ID=123456
-      - REPORT_SERVER=http://host.docker.internal:8000
-      - API_TOKEN=OcDUwd2GQG7hyua0dMkzn6dj3PdhRJWQREGB7pgpJpA
-      - TARGET_FILE=/ioda-upstream-delay-new/source_data/test_ip
-      - INTERMEDIATE_OUTPUT_FILE=/data/tmp/test.yrp
-      - RESULT_FOLDER=/data/results
-      - PROBE_RATE=60000
-      - MAX_TTL=32
-      - PROBE_TYPE=ICMP
-      - REMOTE_STORAGES=default
-      - REMOTE_STORAGES_USERS=default
-      - REMOTE_STORAGES_PASSWORDS=default
 
