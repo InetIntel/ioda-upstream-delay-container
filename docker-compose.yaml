@@ -10,7 +10,6 @@ services:
       - NET_RAW
     volumes:
       - ./data:/data
-      - ./config:/config
     command: python3 main.py
     environment:
       - DEBIAN_FRONTEND=noninteractive
