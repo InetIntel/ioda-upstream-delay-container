@@ -1,0 +1,17 @@
+services:
+  iupd:
+    build:
+      context: .
+    container_name: iupd-container
+    network_mode: host
+    user: root
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - ./data/:/data
+    command: python3 main.py
+    environment:
+      - DEBIAN_FRONTEND=noninteractive
+      - APP_ENV=docker
+      - PROBE_RATE=25000

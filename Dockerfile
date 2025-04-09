@@ -18,6 +18,8 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     python3-setuptools \
     python3-dev \
+    net-tools \
+    rsync \
     && rm -rf /var/lib/apt/lists/*
 
 # Scamper
@@ -68,6 +70,7 @@ RUN ./bootstrap && ./configure && make
 WORKDIR /
 RUN git clone https://github.com/InetIntel/ioda-upstream-delay-docker-application /ioda-upstream-delay-application
 RUN mkdir -p /data/tmp /data/results
+RUN date +%s > /tmp/timestamp 
 RUN cd /ioda-upstream-delay-application && git pull
 RUN cd /ioda-upstream-delay-application/yrp2text && \
     make
