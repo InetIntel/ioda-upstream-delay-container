@@ -14,4 +14,5 @@ services:
     environment:
       - DEBIAN_FRONTEND=noninteractive
       - APP_ENV=docker
-      - PROBE_RATE=25000
+      - PROBE_RATE=25000 # Passed to yarrp command to set packet per second limit for probing
+      - BW_LIMIT=10m # Passed to rsync to set bw limit for uploading measurement results
