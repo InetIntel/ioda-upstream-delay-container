@@ -8,7 +8,7 @@ This repository provides instructions necessary to set up an IODA Upstream Delay
 
 The first step to setting up a vantage point is to clone this repository:
 
-```git clone git@github.com:InetIntel/ioda-upstream-delay-container.git```
+```git clone https://github.com/InetIntel/ioda-upstream-delay-container.git```
 
 ### Create and register an SSH key
 
