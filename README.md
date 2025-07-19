@@ -12,7 +12,7 @@ The first step to setting up a vantage point is to clone this repository:
 
 ### Create and register an SSH key
 
-The next step is to create an SSH key (or select one that already exists). This SSH key will be used for authentication when reporting measurement results. Once you have selected the SSH key to use, overwrite the file at `./data/ssh_id` with your private key. This private key will be used to upload measurement results from your vantage point.
+The next step is to create an SSH key (or select one that already exists). This SSH key will be used for authentication when reporting measurement results. Once you have selected the SSH key to use, overwrite the file at `./ioda-upstream-delay-container/data/ssh_id` with your private key. This private key will be used to upload measurement results from your vantage point.
 
 To register your vantage point, please share your public key (e.g., `id_rsa.pub`) with a member of the IODA team. Once the public key is registered, your vantage point will be able to upload files to the IODA server. 
 
